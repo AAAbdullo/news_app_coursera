@@ -24,11 +24,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   Future<void> _loadFavorites() async {
     final favs = await _storage.getFavorites();
-    if (mounted)
+    if (mounted) {
       setState(() {
         _favorites = favs;
         _isLoading = false;
       });
+    }
   }
 
   Future<void> _removeFavorite(Article article) async {

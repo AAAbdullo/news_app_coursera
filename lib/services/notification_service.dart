@@ -19,6 +19,13 @@ class NotificationService {
     const settings =
         InitializationSettings(android: androidSettings, iOS: iosSettings);
     await _plugin.initialize(settings: settings);
+
+    // Запрос разрешения для Android 13+
+    final androidImplementation = _plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+    if (androidImplementation != null) {
+      await androidImplementation.requestNotificationsPermission();
+    }
   }
 
   Future<void> showTestNotification() async {

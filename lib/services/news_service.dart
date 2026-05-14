@@ -22,7 +22,7 @@ class NewsService {
         final List articles = data['articles'] ?? [];
         return articles
             .map((a) => Article.fromJson(a))
-            .where((a) => a.title != '[Removed]' && a.urlToImage.isNotEmpty)
+            .where((a) => a.title != '[Removed]')
             .toList();
       } else {
         throw Exception('Failed to load news: ${response.statusCode}');

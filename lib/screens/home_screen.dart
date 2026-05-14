@@ -68,9 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
           await _newsService.getTopHeadlines(category: _selectedCategory);
       if (mounted) setState(() => _articles = articles);
     } catch (e) {
-      if (mounted)
+      if (mounted) {
         setState(() => _error =
             'Не удалось загрузить новости.\nПроверьте API ключ и интернет.');
+      }
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
